@@ -1,0 +1,10 @@
+Voltage divider circuit
+
+V1 Vin 0 5V
+R1 Vin Vout 1k
+R2 Vout 0 2k
+
+.op
+.end 
+
+
