@@ -103,7 +103,7 @@ In this section I start with our analysis of MOSFET models present in sky130 pdk
 
 ___highly recommended to check out the tutorials of xschem [here](http://repo.hu/projects/xschem/xschem_man/xschem_man.html)___
 
-![NMOS CHAR SCHEMATIC]()
+![NMOS CHAR SCHEMATIC](./Images/NMOS_Char_basic_schematic.png)
 
 The components used are:<br>
 ```nfet_01v8.sym``` - from xschem_sky130 library<br>
