@@ -19,6 +19,7 @@ Let's get right into it.
   - [1.2 PDK Setup](#1.2-PDK-setup)
 - [2. Analysis of MOSFET models](#2-Analysis-of-MOSFET-models)
 
+###### Section 1 has been copies from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
 
 ## 1. Tools and PDK setup
 
@@ -33,7 +34,7 @@ For the design and simulation of the BGR circuit we will need the following tool
 
 [Ngspice](http://ngspice.sourceforge.net/devel.html) is the open source spice simulator for electric and electronic circuits. Ngspice is an open project, there is no closed group of developers.
 
-[Ngspice Reference Manual][NGSpiceMan]: Complete reference manual in HTML format.
+[Ngspice Reference Manual](http://ngspice.sourceforge.net/docs/ngspice-manual.pdf): Complete reference manual in HTML format.
 
 **Steps to install Ngspice** - 
 Open the terminal and type the following to install Ngspice
@@ -58,7 +59,7 @@ $  sudo make install
 #### 1.1.3 Netgen
 ![image](https://user-images.githubusercontent.com/49194847/138073573-a819cc67-7643-4ecf-983d-454d99ec5443.png)
 
-[Netgen] is a tool for comparing netlists, a process known as LVS, which stands for "Layout vs. Schematic". This is an important step in the integrated circuit design flow, ensuring that the geometry that has been laid out matches the expected circuit.
+[Netgen](http://opencircuitdesign.com/netgen/) is a tool for comparing netlists, a process known as LVS, which stands for "Layout vs. Schematic". This is an important step in the integrated circuit design flow, ensuring that the geometry that has been laid out matches the expected circuit.
 
 **Steps to install Netgen** - Open the terminal and type the following to insatll Netgen.
 ```
@@ -83,4 +84,5 @@ $  ./configure [options]
 $  make
 $  [sudo] make install
 ```
+or you can also use the instructions given at [open_pdk installation](http://opencircuitdesign.com/open_pdks/index.html) although it can be a bit tedious, but sure is worth it. I personally have the latter. 
 
