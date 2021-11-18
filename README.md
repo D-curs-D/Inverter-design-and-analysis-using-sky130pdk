@@ -9,7 +9,7 @@ I will try to keep updating it as often as possible, as this first project is a 
 
 Let's get right into it. 
 
-![Inverter Design and Analysis](./inverter_intro_picture.png)
+![Inverter Design and Analysis](.Images/inverter_intro_picture.png)
 
 ## Technologies used
 
