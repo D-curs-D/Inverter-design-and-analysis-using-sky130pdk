@@ -29,6 +29,7 @@ For the design and simulation of the BGR circuit we will need the following tool
 - Spice netlist simulation - [Ngspice]
 - Layout Design and DRC - [Magic]
 - LVS - [Netgen]
+- Schematic Capture - Xschem
 
 #### 1.1.1 Ngspice 
 ![image](https://user-images.githubusercontent.com/49194847/138070431-d95ce371-db3b-43a1-8dbe-fa85bff53625.png)
