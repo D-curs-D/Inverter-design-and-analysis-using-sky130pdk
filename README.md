@@ -11,3 +11,6 @@ Let's get right into it.
 
 ![Inverter Design and Analysis](./inverter_intro_picture.png)
 
+## Technologies used
+
+
