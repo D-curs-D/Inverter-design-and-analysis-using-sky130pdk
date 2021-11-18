@@ -69,6 +69,13 @@ $  ./configure
 $  sudo make
 $  sudo make install 
 ```
+#### 1.1.4 Xschem
+
+[Xschem](http://repo.hu/projects/xschem/xschem_man/xschem_man.html) is a schematic capture program that allows to interactively enter an electronic circuit using a graphical and easy to use interface. When the schematic has been created a circuit netlist can be generated for simulation.
+
+**Steps to install Xschem**
+Follow the instructions given [here](http://repo.hu/projects/xschem/xschem_man/tutorial_install_xschem.html) or follow [this](https://www.youtube.com/watch?v=jXmmxO8WG8s) video tutorial by the creator himself
+
 ### 1.2 PDK setup
 
 A process design kit (PDK) is a set of files used within the semiconductor industry to model a fabrication process for the design tools used to design an integrated circuit. The PDK is created by the foundry defining a certain technology variation for their processes. It is then passed to their customers to use in the design process.
@@ -84,5 +91,20 @@ $  ./configure [options]
 $  make
 $  [sudo] make install
 ```
-or you can also use the instructions given at [open_pdk installation](http://opencircuitdesign.com/open_pdks/index.html) although it can be a bit tedious, but sure is worth it. I personally have the latter. 
 
+*or you can also use the instructions given at [open_pdk installation](http://opencircuitdesign.com/open_pdks/index.html), and also for all the other applications used here can be found at [Open Circuit Design](opencircuitdesign.com/) website. The website covers details about a lot of opensource tools, with details about their usage installation etc.*
+
+## 2. Analysis of MOSFET models
+
+#### General NMOS Analysis
+
+In this section we start with our analysis of MOSFET models present in sky130 pdk. We would be using the 1.8v transistor models, but you can definitely use and experiment with other ones present there. We first start with creating a schematic and for that we will be using **Xschem**.
+
+Xschem as mentioned is a schematic capture program. To access Xschem in ubuntu - Open terminal and write
+```
+$ cd
+$ xschem 
+```
+make sure you always open xschem from the home directory.
+
+Now, a new blank schematic window would appear infront of you. First hit ``` Ctrl+S ``` to save the file and name it in whatever way you would like. I choose, ```nmos_char_1v8.sch```. Now we start arranging components and wiring them together to form a standard NMOS Characteristics format. 
