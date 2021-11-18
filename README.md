@@ -5,6 +5,5 @@ This project has only one motive that is to experiment working of an inverter an
  
 Let's get right into it. 
 
-![Inverter Schematic in XSCHEM](./inv_schematic.png)
-
+![Inverter Design and Analysis](./inverter_intro_picture.png)
 
