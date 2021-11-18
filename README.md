@@ -5,7 +5,7 @@ This project has only one motive; that is to experiment with working of an inver
 
 The whole process starts with analysis of _NMOS_ and _PMOS_ devices, specifically the 1.8v standard models available inside the pdk to determine a common working W/L ratio and also the gm, ron and similar values. After this we start with the design of a CMOS inverter that includes schematic, measurement of various parameters like delays, noise margin, risetime, falltime, etc. This part would also act as a case study on __SPICE__ where we use it's programming capabilities to better our abilities in measurements of aforementioned parameters. Then we will engage in the design a layout for our inverter in __magic layout editor__. Here, we will also explore the different layers available to the user and how we utilise them in a design and what it translates to in terms of a mask. Lastly, we compare the two netlists, that is the schematic and the layout one, which is popularly referred to as ___LVS___. If everything is hunky-dory, this project would then conclude. 
 
-I will try to keep updating it as often as possible, as this first project is a primary resource for me to practice analog design, with the open source toolchain and definitely to keep the documentation easily understandable by anyone who later tries to practice it the same way.
+I will try to keep updating it as often as possible, as this first project is a primary resource for me to practice analog design, with the open source toolchain and definitely to keep a documentation that is easily understandable by anyone who later tries to practice it the same way.
 
 Let's get right into it. 
 
@@ -18,6 +18,7 @@ Let's get right into it.
   - [1.1 Tools Setup](#1.1-Tools-setup)
   - [1.2 PDK Setup](#1.2-PDK-setup)
 - [2. Analysis of MOSFET models](#2-Analysis-of-MOSFET-models)
+  - [2.1 General MOS analysis](#2.1-General-MOS-analysis)
 
 ###### Section 1 has been copies from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
 
@@ -98,13 +99,16 @@ $  [sudo] make install
 
 #### General NMOS Analysis
 
-In this section we start with our analysis of MOSFET models present in sky130 pdk. We would be using the 1.8v transistor models, but you can definitely use and experiment with other ones present there. We first start with creating a schematic and for that we will be using **Xschem**.
+In this section I start with our analysis of MOSFET models present in sky130 pdk. I would be using the 1.8v transistor models, but you can definitely use and experiment with other ones present there. below is the schematic I created in **Xschem**.
 
-Xschem as mentioned is a schematic capture program. To access Xschem in ubuntu - Open terminal and write
-```
-$ cd
-$ xschem 
-```
-make sure you always open xschem from the home directory.
+___highly recommended to check out the tutorials of xschem [here](http://repo.hu/projects/xschem/xschem_man/xschem_man.html)___
 
-Now, a new blank schematic window would appear infront of you. First hit ``` Ctrl+S ``` to save the file and name it in whatever way you would like. I choose, ```nmos_char_1v8.sch```. Now we start arranging components and wiring them together to form a standard NMOS Characteristics format. 
+![NMOS CHAR SCHEMATIC]()
+
+The components used are:<br>
+```nfet_01v8.sym``` - from xschem_sky130 library<br>
+```vsource.sym``` - from xschem devices library<br>
+```code_shown.sym``` - from xschem devices library<br>
+
+
+
