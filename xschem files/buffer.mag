@@ -1,0 +1,12 @@
+magic
+tech sky130A
+timestamp 1637503378
+use inv_1  inv_1_1
+timestamp 1637503053
+transform 1 0 636 0 1 91
+box -229 -76 165 705
+use inv_1  inv_1_0
+timestamp 1637503053
+transform 1 0 242 0 1 91
+box -229 -76 165 705
+<< end >>
