@@ -102,7 +102,7 @@ $  [sudo] make install
 
 In this section I start with our analysis of MOSFET models present in sky130 pdk. I would be using the 1.8v transistor models, but you can definitely use and experiment with other ones present there. below is the schematic I created in **Xschem**.
 
-___highly recommended to check out the tutorials of xschem [here](http://repo.hu/projects/xschem/xschem_man/xschem_man.html)___
+___highly recommended to check out the tutorials of xschem [here](http://repo.hu/projects/xschem/xschem_man/xschem_man.html) and ngspice [here](http://ngspice.sourceforge.net/docs/ngspice-manual.pdf)___
 
 ![NMOS CHAR SCHEMATIC](./Images/nfet_for_vgs_vs_ids.png)
 
@@ -111,6 +111,21 @@ The components used are:<br>
 ```vsource.sym``` - from xschem devices library<br>
 ```code_shown.sym``` - from xschem devices library<br>
 
-I used the above to plot the basic characteristic plots for an NMOS Transistor, That is ___Ids vs Vds___ and ___Ids vs Vgs___.
-![Ids vs Vds](./Images/nfet_Ids_vs_Vgs.png)
-![Ids vs Vds](./Images/nfet_Ids_vs_Vds.png)
+I used the above to plot the basic characteristic plots for an NMOS Transistor, That is ___Ids vs Vds___ and ___Ids vs Vgs___. To do that, just save the above circuit with the above mentioned specifications and component placement. After this just hit __Netlist__ then __Simulate__. ___ngspice___ would pop up and start doing the simulation based calculations. It will take time as all the libraries need to be called and attached to the simulation spice engine. Once that is done, you need to write a couple commands in the ngspice terminal:<br>
+'''display''' - This would display all the vectors available for plotting and printing.<br>
+'''setplot''' - This would list all the set of plots available for this simulation.<br><br>
+_after this choose a plot by typing '''setplot <plot_name>'''. for example '''setplot tran1'''_<br><br>
+'''plot''' - to choose the vector to plot.<br>
+_example : plot -vds#branch_<br><br>
+
+Then you must see the plot below you, if you did a DC sweep on the __VGS__ source for different values of __VDS__:
+![Ids vs Vgs](./Images/nfet_Ids_vs_Vgs.png)<br><br>
+
+Similarly, when I sweep __VDS__ source for different values of __VGS__, I get the below plot:
+
+![Ids vs Vds](./Images/nfet_Ids_vs_Vds.png)<br><br>
+
+Now the above two definitely looks like what the characteristics curves should, but now we need to choose a particular curve that we would do further analysis on. Since I am making an inverter, let's choose the highest value avialable for the Vgs, that is __1.8V__. So to do that, we just change the value of Vgs source to 1.8 and then hit netlist, then simulate to simulate the circuit. 
+![Ids vs Vds for Vgs = 1.8](./Images/nfet_ids_vs_Vds_Vgs18.png)
+
+Now we can also plot gm and go(or ro) values for the above mosfet. This would let us know the important values that can be used in the maths involved with the parameters further. To do that, in ngspice 
