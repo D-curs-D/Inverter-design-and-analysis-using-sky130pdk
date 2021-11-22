@@ -111,5 +111,6 @@ The components used are:<br>
 ```vsource.sym``` - from xschem devices library<br>
 ```code_shown.sym``` - from xschem devices library<br>
 
-
-
+I used the above to plot the basic characteristic plots for an NMOS Transistor, That is ___Ids vs Vds___ and ___Ids vs Vgs___.
+![Ids vs Vds](./Images/nfet_Ids_vs_Vgs)
+![Ids vs Vds](./Images/nfet_Ids_vs_Vds)
