@@ -111,21 +111,24 @@ The components used are:<br>
 ```vsource.sym``` - from xschem devices library<br>
 ```code_shown.sym``` - from xschem devices library<br>
 
-I used the above to plot the basic characteristic plots for an NMOS Transistor, That is ___Ids vs Vds___ and ___Ids vs Vgs___. To do that, just save the above circuit with the above mentioned specifications and component placement. After this just hit __Netlist__ then __Simulate__. ___ngspice___ would pop up and start doing the simulation based calculations. It will take time as all the libraries need to be called and attached to the simulation spice engine. Once that is done, you need to write a couple commands in the ngspice terminal:<br>
-'''display''' - This would display all the vectors available for plotting and printing.<br>
-'''setplot''' - This would list all the set of plots available for this simulation.<br><br>
-_after this choose a plot by typing '''setplot <plot_name>'''. for example '''setplot tran1'''_<br><br>
-'''plot''' - to choose the vector to plot.<br>
+I used the above to plot the basic characteristic plots for an NMOS Transistor, That is ___Ids vs Vds___ and ___Ids vs Vgs___. To do that, just save the above circuit with the above mentioned specifications and component placement. After this just hit __Netlist__ then __Simulate__. ___ngspice___ would pop up and start doing the simulation based calculations. It will take time as all the libraries need to be called and attached to the simulation spice engine. Once that is done, you need to write a couple commands in the ngspice terminal:<br><br>
+```display``` - This would display all the vectors available for plotting and printing.<br>
+```setplot``` - This would list all the set of plots available for this simulation.<br>
+_after this choose a plot by typing '''setplot <plot_name>'''. for example '''setplot tran1'''_<br>
+```plot``` - to choose the vector to plot.<br>
 _example : plot -vds#branch_<br><br>
 
-Then you must see the plot below you, if you did a DC sweep on the __VGS__ source for different values of __VDS__:
+Then you must see the plot below you, if you did a DC sweep on the __VGS__ source for different values of __VDS__:<br>
 ![Ids vs Vgs](./Images/nfet_Ids_vs_Vgs.png)<br><br>
 
-Similarly, when I sweep __VDS__ source for different values of __VGS__, I get the below plot:
+This definitely shows us that the threshold value is between __600mV to 700mV__ and I think I will be using 650mV for my future calculations.
+Similarly, when I sweep __VDS__ source for different values of __VGS__, I get the below plot:<br>
 
 ![Ids vs Vds](./Images/nfet_Ids_vs_Vds.png)<br><br>
 
 Now the above two definitely looks like what the characteristics curves should, but now we need to choose a particular curve that we would do further analysis on. Since I am making an inverter, let's choose the highest value avialable for the Vgs, that is __1.8V__. So to do that, we just change the value of Vgs source to 1.8 and then hit netlist, then simulate to simulate the circuit. 
 ![Ids vs Vds for Vgs = 1.8](./Images/nfet_ids_vs_Vds_Vgs18.png)
 
-Now we can also plot gm and go(or ro) values for the above mosfet. This would let us know the important values that can be used in the maths involved with the parameters further. To do that, in ngspice 
+I also did plot gm and go(or ro) values for the above mosfet. This would be crucial as we can obtain a lot of parameters from these values. Both of these below are for the general dc sweep we did above. 
+![gm](./Images/nfet_gds.png)<br>
+![go](./Images/nfet_go.png)<br>
