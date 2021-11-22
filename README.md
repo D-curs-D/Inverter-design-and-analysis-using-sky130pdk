@@ -121,12 +121,12 @@ _example : plot -vds#branch_<br><br>
 Then you must see the plot below you, if you did a DC sweep on the __VGS__ source for different values of __VDS__:<br>
 ![Ids vs Vgs](./Images/nfet_Ids_vs_Vgs.png)<br><br>
 
-This definitely shows us that the threshold value is between __600mV to 700mV__ and I think I will be using 650mV for my future calculations.
+This definitely shows us that the threshold value is between __600mV to 700mV__ and I think I will be using ___650mV___ for my future calculations.
 Similarly, when I sweep __VDS__ source for different values of __VGS__, I get the below plot:<br>
 
 ![Ids vs Vds](./Images/nfet_Ids_vs_Vds.png)<br><br>
 
-Now the above two definitely looks like what the characteristics curves should, but now we need to choose a particular curve that we would do further analysis on. Since I am making an inverter, let's choose the highest value avialable for the Vgs, that is __1.8V__. So to do that, we just change the value of Vgs source to 1.8 and then hit netlist, then simulate to simulate the circuit. 
+Now the above two definitely looks like what the characteristics curves should, but now we need to choose a particular curve that we would do further analysis on. Since I am making an inverter, let's choose the highest value avialable for the Vgs, that is __1.8V__. So to do that, we just change the value of Vgs source to 1.8 and then hit netlist, then simulate to simulate the circuit.<br>
 ![Ids vs Vds for Vgs = 1.8](./Images/nfet_ids_vs_Vds_Vgs18.png)
 
 I also did plot gm and go(or ro) values for the above mosfet. This would be crucial as we can obtain a lot of parameters from these values. Both of these below are for the general dc sweep we did above. 
