@@ -135,8 +135,7 @@ I also did plot gm and go(or ro) values for the above mosfet. This would be cruc
 Since I am making an inverter, let's choose the highest value avialable for the Vgs, that is __1.8V__. So to do that, we just change the value of Vgs source to 1.8 and then hit netlist, then simulate to simulate the circuit.<br>
 ![Ids vs Vds for Vgs = 1.8](./Images/nfet_ids_vs_Vds_Vgs18.png)
 
-This above plot also tells us the value of current at this value of __Vgs__ which is around __320uA__. Next step is to calculate the __Gm__, that is the transconductance parameter. To do that we simple type the commands as shown in the console in the left hand side. The ```deriv()``` function takes the derivative with respect to the independent variable present at the current simulation. From the definition of __Gm__ we are aware that it is $$\frac{\partial Ids}{\partial Vds} . Hence, I did the same to plot the __Gm__ of this nfet. After this I measured the value at 1.8V.<br>
-___Information on how to use the meas command can be found at [ngspice manual](http://ngspice.sourceforge.net/docs/ngspice-manual.pdf) !___ <br>
+This above plot also tells us the value of current at this value of __Vgs__ which is around __320uA__. Next step is to calculate the __Gm__, that is the transconductance parameter. To do that we simple type the commands as shown in the console in the left hand side. The ```deriv()``` function takes the derivative with respect to the independent variable present at the current simulation. From the definition of __Gm__ we are aware that it is ___dIds/dVds___. Hence, I did the same to plot the __Gm__ of this nfet. After this I measured the value at 1.8V.<br>
+<align = centre>___Information on how to use the meas command can be found at [ngspice manual](http://ngspice.sourceforge.net/docs/ngspice-manual.pdf) !___ <br><br></align>
 ![Gm for nfet_1v8](./Images/nfet_Gm_at_Vds018.png)
-
 
