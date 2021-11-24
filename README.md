@@ -155,4 +155,7 @@ ___The last one might be the most important one for an Inverter design___<br><br
 
 #### 2.2 Weak 0 and Strong 1
 What does the above mean? Look at the graph below,<br>
-![NMOS as inverter](./Images/nmos_as_inverter.png)
+![NMOS as inverter](./Images/nmos_as_inverter.png)<br>
+![NMOS weak zero](./Images/nmos_tran_inverter.png)<br><br>
+
+
