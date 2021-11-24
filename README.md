@@ -145,5 +145,5 @@ Similaraly I did the same for ___Ids vs Vds___ and also used that to find ___rds
 
 Hence, we now have all our important values we needed. Same can be done for a ___PMOS___. Motive is same, but expecially to extract the value of Aspect ratio for which the current is the same in both NMOS and PMOS. I have done some experimentation and found that at __W/L of PMOS__ = __4 * (Aspect ratio of NMOS)__ (APPROXIMATELY).
 
-![pfet test bench] = (./Images/pfet_test_ckt.png)
-![Vds vs Ids for pfet] = (./Images/pfet_Ids_vs_Vds_for_Vsg018.png)
+![pfet test bench](./Images/pfet_test_ckt.png)<br>
+![Vds vs Ids for pfet](./Images/pfet_Ids_vs_Vds_for_Vsg018.png)
