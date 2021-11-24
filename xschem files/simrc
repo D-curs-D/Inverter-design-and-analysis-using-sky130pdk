@@ -1,0 +1,106 @@
+# set the list of tools known to xschem
+# Note that no spaces are allowed around commas in array keys
+set sim(tool_list) {spice spicewave verilog verilogwave vhdl vhdlwave}
+
+#Specify the number of configured spice tools.
+set sim(spice,n) 3 ;# number of configured spice tools
+# Specify the default spice tool to use (first=0)
+set sim(spice,default) 0 ;# default spice tool to launch
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(spice,0,cmd) {$terminal -e 'ngspice -i "$N" -a||sh'}
+set sim(spice,0,name) {Ngspice}
+set sim(spice,0,fg) 0
+set sim(spice,0,st) 0
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(spice,1,cmd) {ngspice -b -r "$n.raw" -o "$n.out" "$N"}
+set sim(spice,1,name) {Ngspice batch}
+set sim(spice,1,fg) 0
+set sim(spice,1,st) 0
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(spice,2,cmd) {Xyce "$N" -r "$n.raw"}
+set sim(spice,2,name) {Xyce batch}
+set sim(spice,2,fg) 0
+set sim(spice,2,st) 1
+
+
+#Specify the number of configured spicewave tools.
+set sim(spicewave,n) 4 ;# number of configured spicewave tools
+# Specify the default spicewave tool to use (first=0)
+set sim(spicewave,default) 0 ;# default spicewave tool to launch
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(spicewave,0,cmd) {gaw "$n.raw" }
+set sim(spicewave,0,name) {Gaw viewer}
+set sim(spicewave,0,fg) 0
+set sim(spicewave,0,st) 0
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(spicewave,1,cmd) {$terminal -e ngspice}
+set sim(spicewave,1,name) {Ngpice Viewer}
+set sim(spicewave,1,fg) 0
+set sim(spicewave,1,st) 0
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(spicewave,2,cmd) {rawtovcd -v 1.5 "$n.raw" > "$n.vcd" && gtkwave "$n.vcd" "$n.sav" 2>/dev/null}
+set sim(spicewave,2,name) {Rawtovcd}
+set sim(spicewave,2,fg) 0
+set sim(spicewave,2,st) 0
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(spicewave,3,cmd) {$env(HOME)/analog_flavor_eval/bin/bspwave --socket localhost $bespice_listen_port "$n.raw" }
+set sim(spicewave,3,name) {Bespice wave}
+set sim(spicewave,3,fg) 0
+set sim(spicewave,3,st) 0
+
+
+#Specify the number of configured verilog tools.
+set sim(verilog,n) 1 ;# number of configured verilog tools
+# Specify the default verilog tool to use (first=0)
+set sim(verilog,default) 0 ;# default verilog tool to launch
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(verilog,0,cmd) {iverilog -o .verilog_object -g2012 "$N" && vvp .verilog_object}
+set sim(verilog,0,name) {Icarus verilog}
+set sim(verilog,0,fg) 0
+set sim(verilog,0,st) 1
+
+
+#Specify the number of configured verilogwave tools.
+set sim(verilogwave,n) 1 ;# number of configured verilogwave tools
+# Specify the default verilogwave tool to use (first=0)
+set sim(verilogwave,default) 0 ;# default verilogwave tool to launch
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(verilogwave,0,cmd) {gtkwave dumpfile.vcd "$N.sav" 2>/dev/null}
+set sim(verilogwave,0,name) {Gtkwave}
+set sim(verilogwave,0,fg) 0
+set sim(verilogwave,0,st) 0
+
+
+#Specify the number of configured vhdl tools.
+set sim(vhdl,n) 1 ;# number of configured vhdl tools
+# Specify the default vhdl tool to use (first=0)
+set sim(vhdl,default) 0 ;# default vhdl tool to launch
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(vhdl,0,cmd) {ghdl -c --ieee=synopsys -fexplicit "$N" -r "$s" --wave="$n.ghw"}
+set sim(vhdl,0,name) {Ghdl}
+set sim(vhdl,0,fg) 0
+set sim(vhdl,0,st) 1
+
+
+#Specify the number of configured vhdlwave tools.
+set sim(vhdlwave,n) 1 ;# number of configured vhdlwave tools
+# Specify the default vhdlwave tool to use (first=0)
+set sim(vhdlwave,default) 0 ;# default vhdlwave tool to launch
+
+# specify tool command (cmd), name (name), if tool must run in foreground and if exit status must be reported
+set sim(vhdlwave,0,cmd) {gtkwave "$n.ghw" "$N.sav" 2>/dev/null}
+set sim(vhdlwave,0,name) {Gtkwave}
+set sim(vhdlwave,0,fg) 0
+set sim(vhdlwave,0,st) 0
+
+

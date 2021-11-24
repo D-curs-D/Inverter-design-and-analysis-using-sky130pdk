@@ -27,8 +27,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {vsource.sym} 50 50 0 0 {name=Vgs value=1.8
-}
+C {vsource.sym} 50 50 0 0 {name=Vgs value=1.8}
 C {vsource.sym} 240 50 0 0 {name=Vds value=0
 }
 C {gnd.sym} 50 80 0 0 {name=l1 lab=GND}
