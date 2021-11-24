@@ -19,6 +19,8 @@ Let's get right into it.
   - [1.2 PDK Setup](#1.2-PDK-setup)
 - [2. Analysis of MOSFET models](#2-Analysis-of-MOSFET-models)
   - [2.1 General MOS analysis](#2.1-General-MOS-analysis)
+  - [2.2 Weak 0 and Strong 1](#2.2-Weak-0-and-Strong-1)
+  - 
 
 ###### Section 1 has been copies from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
 
@@ -96,9 +98,11 @@ $  [sudo] make install
 
 *or you can also use the instructions given at [open_pdk installation](http://opencircuitdesign.com/open_pdks/index.html), and also for all the other applications used here can be found at [Open Circuit Design](opencircuitdesign.com/) website. The website covers details about a lot of opensource tools, with details about their usage installation etc.*
 
+---
+
 ## 2. Analysis of MOSFET models
 
-#### General NMOS Analysis
+#### 2.1 General NMOS Analysis
 
 In this section I start with our analysis of MOSFET models present in sky130 pdk. I would be using the 1.8v transistor models, but you can definitely use and experiment with other ones present there. below is the schematic I created in **Xschem**.
 
@@ -143,4 +147,12 @@ Similaraly I did the same for ___Ids vs Vds___ and also used that to find ___rds
 ![Vds plot](./Images/nfet_ids_vs_Vds_Vgs18.png)
 ![Rds plot](./Images/nfet_rds_Vgs18.png)<br><br>
 
-Hence, we now have all our important values we needed. Same can be done for a ___PMOS___. Motive is same, but expecially to extract the value of Aspect ratio for which the current is the same in both NMOS and PMOS. I have done some experimentation and found that at __W/L of PMOS__ = __4*Aspect Ratio of NMOS__.
+Hence, we now have all our important values we needed. Same can be done for a ___PMOS___. Motive is same, but expecially to extract the value of Aspect ratio for which the current is the same in both NMOS and PMOS. I have done some experimentation and found that at __W/L of PMOS__ = __4 * (Aspect ratio of NMOS)__, the current value is pretty close. So, we found the NMOS had a current of __317 microamps__ while PMOS has the current of __322 microamps__ (both at |Vgs| = 1.8V). SO like 5 microamps apart. (NOT BAD!!) <br><br>
+![pfet test bench](./Images/pfet_test_ckt.png)<br>
+![Vds vs Ids for pfet](./Images/pfet_Ids_vs_Vds_for_Vsg018.png)<br><br>
+___The last one might be the most important one for an Inverter design___<br><br>
+
+
+#### 2.2 Weak 0 and Strong 1
+What does the above mean? Look at the graph below,<br>
+![NMOS as inverter](./Images/nmos_as_inverter.png)
