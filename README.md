@@ -164,7 +164,7 @@ What does the above mean? Look at the graph below,<br><br>
 
 You can see that, when a square wave is applied to the input of NMOS, when it is __LOW(0V)__, the output goes to __HIGH(1.8V)__. But when the input is __HIGH(1.8V)__, the output goes to a value that is much larger than 0V. This is due to the fact that when Vgs is 1.8V, the NMOS is in linear region. This is where the MOSFET acts as a voltage controlled resistor. At this point, the output is connected to a Voltage Divider Configuration. That is the output takes the value which is defined by the voltage across the resistance of the mosfet. Hence, ___NMOS is able to transmit STRONG 0, but not a STRONG 1. So NMOS is Strong 0 but a Weak 1___<br><br>
 
-### 2.3 Strong 0 and Weak 1
+### 2.3 Weak 0 and Strong 1
 Again, some plots will clear the idea<br><br>
 ![PMOS as inverter](./Images/pmos_as_inverter.png)<br>
 ![PMOS weak One](./Images/pmos_tran_inverter.png)<br><br>
