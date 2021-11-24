@@ -159,7 +159,7 @@ ___The last one might be the most important one for an Inverter design___<br><br
 ### 2.2 Strong 0 and Weak 1
 What does the above mean? Look at the graph below,<br><br>
 ![NMOS as inverter](./Images/nmos_as_inverter.png)<br>
-![NMOS weak One](./Images/nmos_tran_inverter.png)<br><br>
+![NMOS weak Zero](./Images/nmos_tran_inverter.png)<br><br>
 
 
 You can see that, when a square wave is applied to the input of NMOS, when it is __LOW(0V)__, the output goes to __HIGH(1.8V)__. But when the input is __HIGH(1.8V)__, the output goes to a value that is much larger than 0V. This is due to the fact that when Vgs is 1.8V, the NMOS is in linear region. This is where the MOSFET acts as a voltage controlled resistor. At this point, the output is connected to a Voltage Divider Configuration. That is the output takes the value which is defined by the voltage across the resistance of the mosfet. Hence, ___NMOS is able to transmit STRONG 0, but not a STRONG 1. So NMOS is Strong 0 but a Weak 1___<br><br>
@@ -179,6 +179,6 @@ ___Hence, neither NMOS nor PMOS would make a great inverter on their own. So a p
 ### 3.1 Why CMOS Circuits
 
 An interesting obseration was made in the previous section, where we realised that neither NMOS nor PMOS can be used for a inverter design. But another thing that is worth notice is how they complement each other. This is what gave rise to an idea of attaching them together. Since, __PMOS__ is a __Strong 1__, we put it between VDD and Vout and __NMOS__ being a __STRONG 0__, it is placed between Vout and GND. This way, either can act as a load to the other transistor, since __both are never ON together__ (Are they?). The configuration looks like what we have below. This is referred to as __Complimentary Metal Oxide Semiconductor__(CMOS) Configuration and it also represents the simplest circuit known as the __CMOS Inverter__.<br><br>
-![CMOS Inverter](./Images/Cmos_Inverter.png)
+![CMOS Inverter](./Images/CMOS_Inverter_Schematic.png)
 
 ### 3.2 CMOS Inverter
