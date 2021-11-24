@@ -15,15 +15,15 @@ Let's get right into it.
 
 ## Contents
 - [1. Tool and PDK Setup](#1-Tools-and-PDK-setup)
-  - [1.1 Tools Setup](#1.1-Tools-setup)
-  - [1.2 PDK Setup](#1.2-PDK-setup)
+  - [1.1 Tools Setup](#11-Tools-setup)
+  - [1.2 PDK Setup](#12-PDK-setup)
 - [2. Analysis of MOSFET models](#2-Analysis-of-MOSFET-models)
-  - [2.1 General MOS analysis](#2.1-General-MOS-analysis)
-  - [2.2 Strong 0 and Weak 1](#2.2-Strong-0-and-Weak-1)
-  - [2.3 Weak 0 and Strong 1](#2.3-Weak-0-and-Strong-1)
+  - [2.1 General MOS analysis](#21-General-MOS-analysis)
+  - [2.2 Strong 0 and Weak 1](#22-Strong-0-and-Weak-1)
+  - [2.3 Weak 0 and Strong 1](#23-Weak-0-and-Strong-1)
 - [3. CMOS Inverter Design and Analysis](#3-CMOS-Inverter-Design-and-Analysis)
-  - [3.1 Why CMOS Circuits](#3.1-Why-CMOS-Circuits) 
-  - [3.2 CMOS Inverter Analysis](#3.2-CMOS-Inverter-Analysis)
+  - [3.1 Why CMOS Circuits](#31-Why-CMOS-Circuits) 
+  - [3.2 CMOS Inverter Analysis](#32-CMOS-Inverter-Analysis)
 
 ###### Section 1 has been copies from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
 
