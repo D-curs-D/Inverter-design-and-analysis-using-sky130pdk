@@ -23,7 +23,7 @@ Let's get right into it.
   - [2.3 Weak 0 and Strong 1](#2.3-Weak-0-and-Strong-1)
 - [3. CMOS Inverter Design and Analysis](#3-CMOS-Inverter-Design-and-Analysis)
   - [3.1 Why CMOS Circuits](#3.1-Why-CMOS-Circuits) 
-  - [3.2 CMOS Inverter](#3.2-CMOS-Inverter)
+  - [3.2 CMOS Inverter Analysis](#3.2-CMOS-Inverter-Analysis)
 
 ###### Section 1 has been copies from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
 
@@ -181,4 +181,4 @@ ___Hence, neither NMOS nor PMOS would make a great inverter on their own. So a p
 An interesting obseration was made in the previous section, where we realised that neither NMOS nor PMOS can be used for a inverter design. But another thing that is worth notice is how they complement each other. This is what gave rise to an idea of attaching them together. Since, __PMOS__ is a __Strong 1__, we put it between VDD and Vout and __NMOS__ being a __STRONG 0__, it is placed between Vout and GND. This way, either can act as a load to the other transistor, since __both are never ON together__ (Are they?). The configuration looks like what we have below. This is referred to as __Complimentary Metal Oxide Semiconductor__(CMOS) Configuration and it also represents the simplest circuit known as the __CMOS Inverter__.<br><br>
 ![CMOS Inverter](./Images/CMOS_Inverter_Schematic.png)
 
-### 3.2 CMOS Inverter
+### 3.2 CMOS Inverter Analysis
