@@ -18,7 +18,7 @@ Let's get right into it.
   - [1.1 Tools Setup](#1.1-Tools-setup)
   - [1.2 PDK Setup](#1.2-PDK-setup)
 - [2. Analysis of MOSFET models](#2-Analysis-of-MOSFET-models)
-  - [2.1 General MOS analysis](#2.1-General-MOS-analysis)
+  - [2.1 General MOS analysis](#-2.1-General-MOS-analysis)
   - [2.2 Strong 0 and Weak 1](#2.2-Strong-0-and-Weak-1)
   - [2.3 Weak 0 and Strong 1](#2.3-Weak-0-and-Strong-1)
 - [3. CMOS Inverter Design and Analysis](#3-CMOS-Inverter-Design-and-Analysis)
