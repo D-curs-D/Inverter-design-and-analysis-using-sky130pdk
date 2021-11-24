@@ -31,10 +31,10 @@ Let's get right into it.
 
 ### 1.1 Tools setup
 For the design and simulation of the BGR circuit we will need the following tools.
-- Spice netlist simulation - [Ngspice]
-- Layout Design and DRC - [Magic]
-- LVS - [Netgen]
-- Schematic Capture - Xschem
+- Spice netlist simulation - [Ngspice](http://ngspice.sourceforge.net/)
+- Layout Design and DRC - [Magic](http://opencircuitdesign.com/magic/)
+- LVS - [Netgen](http://opencircuitdesign.com/netgen/)
+- Schematic Capture - [Xschem](http://repo.hu/projects/xschem/)
 
 #### 1.1.1 Ngspice 
 ![image](https://user-images.githubusercontent.com/49194847/138070431-d95ce371-db3b-43a1-8dbe-fa85bff53625.png)
@@ -105,7 +105,7 @@ $  [sudo] make install
 
 ## 2. Analysis of MOSFET models
 
-### 2.1 General NMOS Analysis
+### 2.1 General MOS Analysis
 
 In this section I start with our analysis of MOSFET models present in sky130 pdk. I would be using the 1.8v transistor models, but you can definitely use and experiment with other ones present there. below is the schematic I created in **Xschem**.
 
