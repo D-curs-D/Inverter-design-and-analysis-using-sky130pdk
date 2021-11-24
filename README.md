@@ -19,7 +19,7 @@ Let's get right into it.
   - [1.2 PDK Setup](#1.2-PDK-setup)
 - [2. Analysis of MOSFET models](#2-Analysis-of-MOSFET-models)
   - [2.1 General MOS analysis](#2.1-General-MOS-analysis)
-  - [2.2 Weak 0 and Strong 1](#2.2-Weak-0-and-Strong-1)
+  - [2.2 Strong 0 and Weak 1](#2.2-Strong-0-and-Weak-1)
   - 
 
 ###### Section 1 has been copies from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
@@ -153,9 +153,10 @@ Hence, we now have all our important values we needed. Same can be done for a __
 ___The last one might be the most important one for an Inverter design___<br><br>
 
 
-#### 2.2 Weak 0 and Strong 1
+#### 2.2 Strong 0 and Weak 1
 What does the above mean? Look at the graph below,<br>
 ![NMOS as inverter](./Images/nmos_as_inverter.png)<br>
-![NMOS weak zero](./Images/nmos_tran_inverter.png)<br><br>
+![NMOS weak One](./Images/nmos_tran_inverter.png)<br><br>
 
 
+You can see that, when a square wave is applied to the input of NMOS, when it is __LOW(0V)__, the output goes to __HIGH(1.8V)__
