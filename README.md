@@ -77,7 +77,7 @@ $  sudo make
 $  sudo make install 
 ```
 #### 1.1.4 Xschem
-![image](./.github/images/xschem_logo.png)
+![image](https://user-images.githubusercontent.com/43693407/143311382-8cd3c1c9-dd07-4179-892d-52e9cf71e5a7.png)
 
 [Xschem](http://repo.hu/projects/xschem/xschem_man/xschem_man.html) is a schematic capture program that allows to interactively enter an electronic circuit using a graphical and easy to use interface. When the schematic has been created a circuit netlist can be generated for simulation.
 
