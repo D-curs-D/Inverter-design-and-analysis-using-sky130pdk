@@ -23,7 +23,7 @@ Let's get right into it.
   - [2.3 Weak 0 and Strong 1](#23-Weak-0-and-Strong-1)
 - [3. CMOS Inverter Design and Analysis](#3-CMOS-Inverter-Design-and-Analysis)
   - [3.1 Why CMOS Circuits](#31-Why-CMOS-Circuits) 
-  - [3.2 CMOS Inverter Analysis](#32-CMOS-Inverter-Analysis)
+  - [3.2 CMOS Inverter Analysis](#32-CMOS-Inverter)
     - [3.2.1 DC Analysis and Important design parameters](#321-DC-Analysis-and-Important-design-parameters)
 
 ###### Section 1 has been copies from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
