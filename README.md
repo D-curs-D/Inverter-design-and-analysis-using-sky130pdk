@@ -196,6 +196,10 @@ All these parameters are what will always plague any analog design or design wit
 So I designed a Schematic of the Inverter, where the whole thing is based on what we determined earlier. I have chosen __(W/L) of PMOS = 4 times (W/L) of NMOS__ and __(W/L) of NMOS is 1/0.30 in microns__. I also designed a symbol of it, so that we can utilise that for further schematic creation.<br><br>
 ![cmos_inverter_schematic](./Images/CMOS_inv_sch_and_sym.png)<br>
 
-A lot of calculations will now start from this point. Similar to how we analysed for MOSFETs individually. Also from now on, ___(W/L)___ would be mentioned as ___S___ or ___Aspect Ratio___ Simply.
+A lot of calculations will now start from this point. Similar to how we analysed for MOSFETs individually. Also from now on, ___(W/L)___ would be mentioned as ___S___ or ___Aspect Ratio___ Simply. We would use the following testbecnch for future analysis.(Transient and DC)<br>
+![cmos_inv_tb](./Images/cmos_inv_tb.png)<br>
 
 #### 3.2.1 DC Analysis and Important design parameters
+
+DC analysis would be used to plot a Voltage Transfer Characteristics (VTC) curve for the circuit. It will sweep the value of Vin from high to low to determine the  working of circuit with respect to different voltage levels in the input. The following plot is observed when simulated :<br>
+![cmos inverter vtc](./Images/cmos_inv_dc_anal.png)
