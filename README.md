@@ -44,7 +44,7 @@ For the design and simulation of our Inverter.
 
 [Ngspice Reference Manual](http://ngspice.sourceforge.net/docs/ngspice-manual.pdf): Complete reference manual in HTML format.
 
-**Steps to install Ngspice** - 
+**Steps to install Ngspice** - <br>
 ___Don't use the version that comes with linux distribution, since it is dated and sometimes misses crucial updates___
 
 _Follow the instructions in ngspice manual chapter 32.1.2_
