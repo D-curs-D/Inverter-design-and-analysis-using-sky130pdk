@@ -217,11 +217,11 @@ One can solve for them using the equations for individual transistors. Now it is
 Above five are critical for an Inverter and can be seen on the __VTC__ curve of an inverter. One thing to point out now would be,
 <p align=center><i><b>Vth should be at a value of VDD/2 for maximum noise margins</b></i></p> 
 
-And I tried to do that with our calculated inverter values at __l=300nm__ but guess what! It did not work at all. I know there has to be a reason for it, which I will try to investigate further, but as of now, I changed the device to get __Vth__ close to the values __Vdd/2__. Below is it's simulation result.<br>
+And I tried to do that with our calculated inverter values at __l=300nm__ but guess what! It did not work at all. I know there has to be a reason for it, which I will try to investigate further, but as of now, I changed the device parameters to get __Vth__ close to the values __Vdd/2__. Now our __NMOS has S = 1.05/0.15__ and __PMOS has S = 2.1/0.15__. Below is it's simulation result using the same testbench.<br>
 ![cmos_inv_vtc_150](./Images/cmos_inv_vtc_150.png)<br><br>
 
 __VOH__ and __VOL__ are easy to determine as they are your aboslute values. In our case it is __1.8V__ and __0V__ respectively. For __Vih__ and __Vil__, we have another method. At __Vin__ = __VIH__, NMOS is in Saturation region and PMOS in Linear; while when __Vin__ = __VIL__, NMOS is in Linear and PMOS in Saturation. Another interesting thing about these points is that, _these are the points on the curve, when the magnitude of slope = 1_. So we can use ```measure``` commands to find them on the plot. In the plot shown below, look at the points that are at the intersection of the vout curve and the blue vertical line. These are our __VIH__ and __VIL__.<br>
 ![cmos_inv_vih_vil_plot](./Images/cmos_inv_vih_vil_plot.png)<br><br>
 
-And to calculate them, we use .meas statement with apt instructions. The result is down below.<br>
+And to calculate them, we use ```.meas``` statement with apt instructions. The result is down below.<br>
 ![cmos_inv_vih_vil_val](./Images/cmos_inv_vih_vil_val.png)<br><br>
