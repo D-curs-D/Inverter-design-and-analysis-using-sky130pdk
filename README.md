@@ -31,7 +31,7 @@ Let's get right into it.
 ## 1. Tools and PDK setup
 
 ### 1.1 Tools setup
-For the design and simulation of the BGR circuit we will need the following tools.
+For the design and simulation of our Inverter.
 - Spice netlist simulation - [Ngspice](http://ngspice.sourceforge.net/)
 - Layout Design and DRC - [Magic](http://opencircuitdesign.com/magic/)
 - LVS - [Netgen](http://opencircuitdesign.com/netgen/)
@@ -45,10 +45,10 @@ For the design and simulation of the BGR circuit we will need the following tool
 [Ngspice Reference Manual](http://ngspice.sourceforge.net/docs/ngspice-manual.pdf): Complete reference manual in HTML format.
 
 **Steps to install Ngspice** - 
-Open the terminal and type the following to install Ngspice
-```
-$  sudo apt-get install ngspice
-```
+___Don't use the version that comes with linux distribution, since it is dated and sometimes misses crucial updates___
+
+_Follow the instructions in ngspice manual chapter 32.1.2_
+
 #### 1.1.2 Magic
 ![image](https://user-images.githubusercontent.com/49194847/138071384-a2c83ba4-3f9c-431a-98da-72dc2bba38e7.png)
 
