@@ -208,3 +208,13 @@ A voltage transfer characteristics paints a plot that shows the behavior of a de
 ![inverter-operating-regions](https://user-images.githubusercontent.com/43693407/143764318-d0893545-f47c-44b8-a27c-8de8bc4f0759.jpg)
 
 One can solve for them using the equations for individual transistors. Now it is time to talk about the important parameters of this device that are based off it's VTC curve.
+- __VOH__ - Maximum output voltage when it is logic _'1'_.
+- __VOL__ - Minimun output voltage when it is logic _'0'_.
+- __VIH__ - Maximum input voltage that can be interpreted as logic _'0'_.
+- __VIL__ - Minimum input voltage that can be interpreted as logic _'1'_.
+- __Vth__ - Inverter Threshold voltage
+
+Above five are critical for an Inverter and can be seen on the __VTC__ curve of an inverter. One thing to point out now would be,
+<p align=center><i><b>Vth should be at a value of VDD/2 for maximum noise margins</b></i></p> 
+
+And I tried to do that with our calculated inverter values at __l=300nm__ but guess what! It did not work at all. I know there has to be a reason for it, which I will try to investigate further, but as of now, I changed the device to get __Vth__ close to the values __Vdd/2__.
