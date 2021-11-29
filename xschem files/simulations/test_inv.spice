@@ -1,0 +1,84 @@
+**.subckt test_inv
+C1 Z[1] 0 4f m=1
+C2 Z[2] 0 4f m=1
+C3 Z[3] 0 4f m=1
+C4 Z[4] 0 4f m=1
+C5 Z[5] 0 4f m=1
+C6 Z[6] 0 4f m=1
+C7 Z[0] 0 4.01f m=1
+C8 Y[1] 0 4f m=1
+C9 Y[2] 0 4f m=1
+C10 Y[3] 0 4f m=1
+C11 Y[4] 0 4f m=1
+C12 Y[5] 0 4f m=1
+C13 Y[6] 0 4f m=1
+C14 Y[0] 0 4.01f m=1
+x4 Z[1] Z[0] VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x1 Z[2] Z[1] VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x2 Z[3] Z[2] VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x3 Z[4] Z[3] VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x5 Z[5] Z[4] VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x6 Z[6] Z[5] VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x7 Z[0] Z[6] VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x8 Y[0] Y[1] VCC VSS lvtnot W_N=1 L_N=0.15 W_P=2 L_P=0.35 m=1
+x9 Y[1] Y[2] VCC VSS lvtnot W_N=1 L_N=0.15 W_P=2 L_P=0.35 m=1
+x10 Y[2] Y[3] VCC VSS lvtnot W_N=1 L_N=0.15 W_P=2 L_P=0.35 m=1
+x11 Y[3] Y[4] VCC VSS lvtnot W_N=1 L_N=0.15 W_P=2 L_P=0.35 m=1
+x12 Y[4] Y[5] VCC VSS lvtnot W_N=1 L_N=0.15 W_P=2 L_P=0.35 m=1
+x13 Y[5] Y[6] VCC VSS lvtnot W_N=1 L_N=0.15 W_P=2 L_P=0.35 m=1
+x14 Y[6] Y[0] VCC VSS lvtnot W_N=1 L_N=0.15 W_P=2 L_P=0.35 m=1
+**** begin user architecture code
+
+
+vvss vss 0 dc 0
+vvcc vcc 0 pwl 0 0 10n 0 10.1n 1.8 20n 1.8 20.1n 0
+
+.control
+save all
+tran 0.01n 30n
+plot "z[2]" "z[3]" "z[4]"
+plot "y[2]" "y[3]" "y[4]"
+write test_inv.raw
+.endc
+
+
+** manual skywater pdks install (with patches applied)
+* .lib /home/harshit/share/pdk/sky130A/libs.tech/ngspice/models/sky130.lib.spice tt
+
+** opencircuitdesign pdks install
+.lib /home/harshit/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  sky130_tests/not.sym # of pins=2
+* sym_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/not.sym
+* sch_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/not.sch
+.subckt not  y a  VCCPIN  VSSPIN      W_N=1 L_N=0.15 W_P=2 L_P=0.15
+*.opin y
+*.ipin a
+XM1 y a VSSPIN VSSPIN sky130_fd_pr__nfet_01v8 L=L_N W=W_N nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 y a VCCPIN VCCPIN sky130_fd_pr__pfet_01v8 L=L_P W=W_P nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sky130_tests/lvtnot.sym # of pins=2
+* sym_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/lvtnot.sym
+* sch_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/lvtnot.sch
+.subckt lvtnot  a y  VCCPIN  VSSPIN      W_N=1 L_N=0.15 W_P=2 L_P=0.35
+*.opin y
+*.ipin a
+XM2 y a VCCPIN VCCPIN sky130_fd_pr__pfet_01v8_lvt L=L_P W=W_P nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM1 y a VSSPIN VSSPIN sky130_fd_pr__nfet_01v8_lvt L=L_N W=W_N nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.end

@@ -1,0 +1,21 @@
+**.subckt nmos_char_1v8
+XM1 net2 net1 GND GND sky130_fd_pr__nfet_01v8 L=0.50 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+Vgs net1 GND 1.8
+Vds net2 GND 0
+**** begin user architecture code
+
+.lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+
+.dc Vds 0 2.2 1m
+.save all
+.end
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

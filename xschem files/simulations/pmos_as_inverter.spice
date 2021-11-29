@@ -1,0 +1,25 @@
+**.subckt pmos_as_inverter
+V1 Vdd GND 1.8
+V2 Vin GND pulse(0 1.8 0 500ps 500ps 4ns 10ns)
+XM1 Vout Vin Vdd Vdd sky130_fd_pr__pfet_01v8 L=0.30 W=4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+R2 Vout GND 1k m=1
+C2 Vout GND 50f m=1
+**** begin user architecture code
+
+
+.lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+
+
+.tran 100ps 12ns
+.save all
+.end
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

@@ -1,0 +1,38 @@
+
+Circuit: **.subckt inv_dc
+
+Scale set
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Warning: vin: no DC value, transient time 0 value used
+No. of Data Columns : 12  
+
+No. of Data Rows : 2201
+No. of Data Columns : 12  
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vin                                          0
+vdd                                        1.8
+vout                                       1.8
+vdd#branch                        -1.87583e-12
+vin#branch                                   0
+
+
+No. of Data Rows : 229
+CPU time since last call: 104.790 seconds.
+
+Total CPU time: 104.790 seconds.
+
+Total DRAM available = 15902.574219 MB.
+DRAM currently available = 10986.214844 MB.
+Total ngspice program size = 143.543945 MB.
+Resident set size = 129.020508 MB.
+Shared ngspice pages = 1.928711 MB.
+Text (code) pages = 1.597656 MB.
+Stack = 0 bytes.
+Library pages = 127.163086 MB.
+

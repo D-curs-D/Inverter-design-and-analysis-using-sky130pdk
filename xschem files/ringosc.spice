@@ -1,0 +1,29 @@
+* SPICE3 file created from ringosc.ext - technology: sky130A
+
+.subckt inv_1 A Y VDD VSS
+X0 Y A VSS VSS sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=3e+06u l=300000u
+X1 Y A VDD VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=3e+06u l=300000u
+C0 VDD A 0.06fF
+C1 VDD Y 0.70fF
+C2 A Y 0.03fF
+C3 Y VSS 0.97fF
+C4 A VSS 0.83fF
+C5 VDD VSS 2.18fF
+.ends
+
+.subckt ringosc VDD Y VSS
+Xinv_1_0 Y inv_1_1/A VDD VSS inv_1
+Xinv_1_1 inv_1_1/A inv_1_2/A VDD VSS inv_1
+Xinv_1_2 inv_1_2/A Y VDD VSS inv_1
+C0 inv_1_2/A Y 0.21fF
+C1 inv_1_2/A VDD 0.12fF
+C2 inv_1_1/A Y 0.21fF
+C3 VDD inv_1_1/A 0.11fF
+C4 inv_1_2/A VSS 1.90fF
+C5 VDD VSS 6.54fF
+C6 inv_1_1/A VSS 1.89fF
+C7 Y VSS 3.52fF
+.ic v(inv_1_1/A) = 0v v(inv_1_2/A) = 1.8v v(Y) = 0v
+.ends
+
+

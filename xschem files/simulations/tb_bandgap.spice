@@ -1,0 +1,317 @@
+**.subckt tb_bandgap
+x1 START CLK EN_N VBG VCC VSS bandgap
+V1 EN_N VSS 0
+V2 VCC VSS pwl 0 0 1u 0 4u VCC
+V3 VSS 0 0
+E5 TEMPERAT VSS VOL=' temper '
+V4 START VSS pwl 0 VCC 25u VCC 25.001u 0
+V5 CLK VSS dc 0 pulse VCC 0 25u 1n 1n 27000n 30000n
+**** begin user architecture code
+
+
+* this experimental option enables mos model bin
+* selection based on W/NF instead of W
+.options wnflag=1 XMU=0.49 METHOD=GEAR ITL4=100 CHGTOL=1e-15 TRTOL=1 RELTOL=0.0001 VNTOL=0.1u
+.param ABSVAR=0.03
+.param VCCGAUSS=agauss(1.8, 'ABSVAR', 1)
+.param VCC=VCCGAUSS
+* .param VCC=1.8
+** variation marameters:
+* .options savecurrents
+.control
+  option seed=12
+  let run=1
+  dowhile run <= 14
+    if run > 1
+      reset
+      set appendwrite
+    end
+    * save vbg x1.plus x1.minus i(v2) vcc
+    save all
+    if run % 3 = 0
+      set temp=-40
+    end
+    if run % 3 = 1
+      set temp=27
+    end
+    if run % 3 = 2
+      set temp=125
+    end
+    tran 0.05u 150u
+    write tb_bandgap.raw
+    let run = run + 1
+  end
+  set nolegend
+  plot all.vbg
+.endc
+
+
+** manual skywater pdks install (with patches applied)
+* .lib /home/harshit/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/models/sky130.lib.spice
+*+ tt_mm
+
+** opencircuitdesign pdks install
+.lib /home/harshit/skywater-pdk/libraries/sky130_fd_pr_ngspice/latest/sky130.lib.spice tt_mm
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  sky130_tests/bandgap.sym # of pins=6
+* sym_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/bandgap.sym
+* sch_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/bandgap.sch
+.subckt bandgap  START CLK EN_N VBG VCC VSS
+*.ipin EN_N
+*.opin VBG
+*.ipin VCC
+*.ipin VSS
+*.ipin CLK
+*.ipin START
+XQ1 net7 net2 PLUS sky130_fd_pr__pnp_05v5_W0p68L0p68 m=1
+XQ2 net8 net1 E2 sky130_fd_pr__pnp_05v5_W0p68L0p68 m=8
+Vc1 net7 VSS 0
+.save  i(vc1)
+Vb1 net2 VSS 0
+.save  i(vb1)
+Vb2 net1 VSS 0
+.save  i(vb2)
+Vc2 net8 VSS 0
+.save  i(vc2)
+x1 EN_N MINUS PLUS VBG VCC VSS ADJ START bandgap_opamp
+V1 VBG net9 0
+.save  i(v1)
+V2 VBG net10 0
+.save  i(v2)
+x2 EN_N net3 PLUS net4 VCC VSS ADJ2 zero_opamp
+x3 net3 PLUS F2N F2 VCC VSS passgate W_N=0.5 L_N=0.15 W_P=0.5 L_P=0.15 m=1
+x4 net3 MINUS F1N F1 VCC VSS passgate W_N=0.5 L_N=0.15 W_P=0.5 L_P=0.15 m=1
+x5 ADJ2 net4 F2N F2 VCC VSS passgate W_N=0.5 L_N=0.15 W_P=0.5 L_P=0.15 m=1
+x6 ADJ net4 F1N F1 VCC VSS passgate W_N=0.5 L_N=0.15 W_P=0.5 L_P=0.15 m=1
+x8 CLK net5 net11 VCC VSS lvnand WidthN=1 LenN=0.15 WidthP=1 LenP=0.15 m=1
+x9 net12 net6 net13 VCC VSS lvnand WidthN=1 LenN=0.15 WidthP=1 LenP=0.15 m=1
+x10 net12 CLK VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x11 F2 net6 VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x12 net14 net11 VCC VSS not W_N=0.5 L_N=1 W_P=1 L_P=1 m=1
+x13 net15 net14 VCC VSS not W_N=0.5 L_N=1 W_P=1 L_P=1 m=1
+x14 net16 net15 VCC VSS not W_N=0.5 L_N=1 W_P=1 L_P=1 m=1
+x15 net6 net16 VCC VSS not W_N=0.5 L_N=1 W_P=1 L_P=1 m=1
+x16 net17 net13 VCC VSS not W_N=0.5 L_N=1 W_P=1 L_P=1 m=1
+x17 net18 net17 VCC VSS not W_N=0.5 L_N=1 W_P=1 L_P=1 m=1
+x18 net19 net18 VCC VSS not W_N=0.5 L_N=1 W_P=1 L_P=1 m=1
+x19 net5 net19 VCC VSS not W_N=0.5 L_N=1 W_P=1 L_P=1 m=1
+x20 F1 net5 VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+c2 VBG VSS 5p m=1
+x7 ADJ ADJ2 START_N START VCC VSS passgate W_N=0.5 L_N=0.15 W_P=0.5 L_P=0.15 m=1
+x21 START_N START VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x22 F1N F1 VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x23 F2N F2 VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+XC2 ADJ2 VSS sky130_fd_pr__cap_mim_m3_2 W=10 L=10 MF=5 m=5
+XC1 ADJ VSS sky130_fd_pr__cap_mim_m3_2 W=10 L=10 MF=20 m=20
+XR1 net20 net10 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR2 net21 net20 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR3 net22 net21 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR4 net23 net22 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR5 net24 net23 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR6 net25 net24 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR7 MINUS net25 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR8 net26 net9 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR9 net27 net26 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR10 net28 net27 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR11 net29 net28 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR12 net30 net29 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR13 net31 net30 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR14 PLUS net31 VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+XR15 E2 MINUS VSS sky130_fd_pr__res_xhigh_po_0p69 L=10 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sky130_tests/bandgap_opamp.sym # of pins=8
+* sym_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/bandgap_opamp.sym
+* sch_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/bandgap_opamp.sch
+.subckt bandgap_opamp  EN_N MINUS PLUS DIFFOUT VCC VSS ADJ START
+*.ipin PLUS
+*.ipin MINUS
+*.ipin EN_N
+*.ipin VSS
+*.ipin VCC
+*.opin DIFFOUT
+*.ipin ADJ
+*.ipin START
+C6 G1 0 2f m=1
+XM4 net7 EN_N VCC VCC sky130_fd_pr__pfet_01v8 L=6 W=2 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM18 G2 G1 VSS VSS sky130_fd_pr__nfet_01v8_lvt L=4 W=6 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM2 G1 G1 VSS VSS sky130_fd_pr__nfet_01v8_lvt L=4 W=6 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM20 G2 PLUS net8 VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=4 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM6 G1 MINUS net9 VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=4 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+v1 SP net9 0
+.save  i(v1)
+C4 SP 0 2f m=1
+C1 G2 0 2f m=1
+C5 DIFFOUT 0 4f m=1
+XM11 DIFFOUT G2 net1 VSS sky130_fd_pr__nfet_01v8_lvt L=3 W=6 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=4 m=4
+v2 SP net8 0
+.save  i(v2)
+XM5 G1 DIFFOUT net10 VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=4 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+v3 SP net10 0
+.save  i(v3)
+v4 net1 VSS 0
+.save  i(v4)
+v5 VCC net5 0
+.save  i(v5)
+v6 net7 SP 0
+.save  i(v6)
+XM7 DIFFOUT EN_N VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.5 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=3 m=3
+XM1 net2 EN_N VCC VCC sky130_fd_pr__pfet_01v8 L=6 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM8 net3 ADJ net2 VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM9 net3 ADJ net4 VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=0.5 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM10 net4 VCC VSS VSS sky130_fd_pr__nfet_01v8_lvt L=6 W=0.5 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+x1 START_N START VCC VSS not W_N=1 L_N=0.15 W_P=2 L_P=0.15 m=1
+x3 G2 net3 START START_N VCC VSS passgate_nlvt W_N=1 L_N=0.35 W_P=1 L_P=0.35 m=1
+XM3 DIFFOUT EN_N net5 VCC sky130_fd_pr__pfet_01v8 L=6 W=2 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=2 m=2
+XC2 net6 G2 sky130_fd_pr__cap_mim_m3_2 W=5 L=5 MF=8 m=8
+XR5 net6 DIFFOUT VSS sky130_fd_pr__res_xhigh_po_0p69 L=5 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sky130_tests/zero_opamp.sym # of pins=7
+* sym_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/zero_opamp.sym
+* sch_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/zero_opamp.sch
+.subckt zero_opamp  EN_N MINUS PLUS DIFFOUT VCC VSS ADJ
+*.ipin PLUS
+*.ipin MINUS
+*.ipin EN_N
+*.ipin VSS
+*.ipin VCC
+*.opin DIFFOUT
+*.ipin ADJ
+C6 G1 0 2f m=1
+XM4 net6 EN_N VCC VCC sky130_fd_pr__pfet_01v8 L=8 W=2 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM18 G2 G2 VSS VSS sky130_fd_pr__nfet_01v8_lvt L=4 W=2 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM2 G1 G1 VSS VSS sky130_fd_pr__nfet_01v8_lvt L=4 W=2 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM20 G2 PLUS net7 VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=4 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM6 G1 MINUS net8 VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=4 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+v1 SP net8 0
+.save  i(v1)
+C4 SP 0 2f m=1
+C1 G2 0 2f m=1
+C5 DIFFOUT 0 4f m=1
+XM11 DIFFOUT G2 net1 VSS sky130_fd_pr__nfet_01v8_lvt L=4 W=2 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+v2 SP net7 0
+.save  i(v2)
+v4 net1 VSS 0
+.save  i(v4)
+v6 net6 SP 0
+.save  i(v6)
+XM7 DIFFOUT EN_N VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.5 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=3 m=3
+XM46 net9 EN_N VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=5 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+v17 net9 net3 0
+.save  i(v17)
+XM53 net2 G1 VSS VSS sky130_fd_pr__nfet_01v8_lvt L=4 W=2 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM54 net2 net2 net3 VCC sky130_fd_pr__pfet_01v8_lvt L=4 W=4 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM55 DIFFOUT net2 net3 VCC sky130_fd_pr__pfet_01v8_lvt L=4 W=4 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM8 G1 ADJ net4 VCC sky130_fd_pr__pfet_01v8_lvt L=1 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM9 G1 ADJ net5 VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=0.5 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM10 net5 VCC VSS VSS sky130_fd_pr__nfet_01v8_lvt L=8 W=0.5 nf=1 ad='W * 0.29' as='W * 0.29' pd='2*(W + 0.29)'
++ ps='2*(W + 0.29)' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+XM1 net4 EN_N VCC VCC sky130_fd_pr__pfet_01v8 L=8 W=1 nf=1 ad='W * 0.29' as='W * 0.29' pd='W + 2 * 0.29'
++ ps='W + 2 * 0.29' nrd=0 nrs=0 sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sky130_tests/passgate.sym # of pins=4
+* sym_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/passgate.sym
+* sch_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/passgate.sch
+.subckt passgate  Z A GP GN  VCCBPIN  VSSBPIN   W_N=1 L_N=0.2 W_P=1 L_P=0.2
+*.iopin A
+*.iopin Z
+*.ipin GP
+*.ipin GN
+XM1 Z GN A VSSBPIN sky130_fd_pr__nfet_01v8 L=L_N W=W_N nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 Z GP A VCCBPIN sky130_fd_pr__pfet_01v8 L=L_P W=W_P nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sky130_tests/lvnand.sym # of pins=3
+* sym_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/lvnand.sym
+* sch_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/lvnand.sch
+.subckt lvnand  A B Y  VCCPIN  VSSPIN   WidthN=1 LenN=0.15 WidthP=1 LenP=0.15
+*.ipin A
+*.ipin B
+*.opin Y
+XM1 Y B S VSSPIN sky130_fd_pr__nfet_01v8 L=LenN W=WidthN nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 Y A VCCPIN VCCPIN sky130_fd_pr__pfet_01v8 L=LenP W=WidthP nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 Y B VCCPIN VCCPIN sky130_fd_pr__pfet_01v8 L=LenP W=WidthP nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 S A VSSPIN VSSPIN sky130_fd_pr__nfet_01v8 L=LenN W=WidthN nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sky130_tests/not.sym # of pins=2
+* sym_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/not.sym
+* sch_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/not.sch
+.subckt not  y a  VCCPIN  VSSPIN      W_N=1 L_N=0.15 W_P=2 L_P=0.15
+*.opin y
+*.ipin a
+XM1 y a VSSPIN VSSPIN sky130_fd_pr__nfet_01v8 L=L_N W=W_N nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 y a VCCPIN VCCPIN sky130_fd_pr__pfet_01v8 L=L_P W=W_P nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  sky130_tests/passgate_nlvt.sym # of pins=4
+* sym_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/passgate_nlvt.sym
+* sch_path: /home/harshit/.xschem/xschem_library/xschem_sky130/sky130_tests/passgate_nlvt.sch
+.subckt passgate_nlvt  Z A GP GN  VCCBPIN  VSSBPIN   W_N=1 L_N=0.35 W_P=1 L_P=0.35
+*.iopin A
+*.iopin Z
+*.ipin GP
+*.ipin GN
+XM1 Z GN A VSSBPIN sky130_fd_pr__nfet_01v8_lvt L=L_N W=W_N nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 Z GP A VCCBPIN sky130_fd_pr__pfet_01v8_lvt L=L_P W=W_P nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.end
