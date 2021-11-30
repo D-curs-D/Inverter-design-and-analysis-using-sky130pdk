@@ -23,7 +23,7 @@ Let's get right into it.
   - [2.3 Weak 0 and Strong 1](#23-Weak-0-and-Strong-1)
 - [3. CMOS Inverter Design and Analysis](#3-CMOS-Inverter-Design-and-Analysis)
   - [3.1 Why CMOS Circuits](#31-Why-CMOS-Circuits) 
-  - [3.2 CMOS Inverter Analysis(Pre-Layout)](#32-CMOS-Inverter-Analysis(Pre-Layout))
+  - [3.2 CMOS Inverter Analysis(Pre-Layout)](#32-CMOS-Inverter-Analysis-Pre-Layout)
     - [3.2.1 DC Analysis and Important design parameters](#321-DC-Analysis-and-Important-design-parameters)
 
 ###### Section 1 has been copies from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
@@ -187,7 +187,7 @@ CMOS Circuits generally consists of a network split into two parts, Upper one re
 
 ![pun_pdn](https://user-images.githubusercontent.com/43693407/143431624-72bece76-3d5a-41fd-bca7-d21beaecd977.gif)<br>
 
-### 3.2 CMOS Inverter Analysis(Pre-Layout)
+### 3.2 CMOS Inverter Analysis Pre-Layout
 
 Before, I start with the CMOS inverter,  I believe it is worth mentioning what an Inverter is. Inverter is something that inverts. In electronics it is very popularly explained as something that performs the __NOT__ logic, that is complements the input. So a __HIGH(1.8V)__ becomes __LOW(0V)__ and vice versa. Ideally, the output follows the input and there is no delay or propogation issues of the circuit. But in reality, an inverter can be a real piece of work. It can have serveral isseus like how fast can it react to the changes in the input, how much load can it tolerate before it's output breaks and so many more including noise, bandwidth, etc.
 
