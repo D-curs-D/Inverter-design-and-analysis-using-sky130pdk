@@ -23,7 +23,7 @@ Let's get right into it.
   - [2.3 Weak 0 and Strong 1](#23-Weak-0-and-Strong-1)
 - [3. CMOS Inverter Design and Analysis](#3-CMOS-Inverter-Design-and-Analysis)
   - [3.1 Why CMOS Circuits](#31-Why-CMOS-Circuits) 
-  - [3.2 CMOS Inverter Analysis](#32-CMOS-Inverter)
+  - [3.2 CMOS Inverter Analysis(Pre-Layout)](#32-CMOS-Inverter-Analysis(Pre-Layout))
     - [3.2.1 DC Analysis and Important design parameters](#321-DC-Analysis-and-Important-design-parameters)
 
 ###### Section 1 has been copies from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
@@ -187,7 +187,7 @@ CMOS Circuits generally consists of a network split into two parts, Upper one re
 
 ![pun_pdn](https://user-images.githubusercontent.com/43693407/143431624-72bece76-3d5a-41fd-bca7-d21beaecd977.gif)<br>
 
-### 3.2 CMOS Inverter
+### 3.2 CMOS Inverter Analysis(Pre-Layout)
 
 Before, I start with the CMOS inverter,  I believe it is worth mentioning what an Inverter is. Inverter is something that inverts. In electronics it is very popularly explained as something that performs the __NOT__ logic, that is complements the input. So a __HIGH(1.8V)__ becomes __LOW(0V)__ and vice versa. Ideally, the output follows the input and there is no delay or propogation issues of the circuit. But in reality, an inverter can be a real piece of work. It can have serveral isseus like how fast can it react to the changes in the input, how much load can it tolerate before it's output breaks and so many more including noise, bandwidth, etc.
 
@@ -225,3 +225,25 @@ __VOH__ and __VOL__ are easy to determine as they are your aboslute values. In o
 
 And to calculate them, we use ```.meas``` statement with apt instructions. The result is down below.<br>
 ![cmos_inv_vih_vil_val](./Images/cmos_inv_vih_vil_val.png)<br><br>
+
+Look at the commands used carefully. The first lines declares a function, that I have used to see at what region is the derivative of Vout with respect to Vin greater than or equal to one. This has no significance other than visualizing what region is the one where transition occurs. After this I set the plot to dc1, which is the identifier for the first dc analysis done for the netlist. Then it was just plotting them all and using the measure statements to determine the values necessary.
+
+Let's summarize the values obtained :
+| Voltage | Value |
+|---------|-------|
+| Vth_inv | 0.87V |
+|   VOH   | 1.8V  |
+|   VOL   |  0V   |
+|   VIH   | 0.98V |
+|   VIL   | 0.74V |
+
+Now all the basic defining characteristics of an inverter are done. So we can find a couple more things and then proceed towards the transient analysis. Next is __Noise Margins__. Noise margins are defined as the range of values for which the device can work noise free or with high resistance to noise. This is an important parameter for digital circuits, since they work with a set of specific values(2 for binary systems), so it becomes crucial to know what values of the voltages can it sustain for each value. This range is also referred to as __Noise Immunity__. There are two such values of Noise margins for a binary system:<br>
+<b>NML(Noise Margin for Low) - VIL - VOL</b><br>
+<b>NMH(Noise Margin for HIGH) - VOH - VIH</b><br>
+
+So for our calculated values, the device would have, __NML = 0.74V__ and __NML = 0.82V__.
+
+Now, they aren't equal. But if we were to take some more effort to get the values of Vth closet to Vdd/2 (0.9V), then we can get NML = NMH. But for our case they are close enough. Then a last parameter that is crucial for any design is the power it consumes. The __Power Dissipation__ of our inverter is given by __P = Vout * Id__, where Id is the drain current. I think I have not added a plot of the drain current yet. So let's do that below and calculate the power consumption of our inverter.<br>
+![cmos_inv_curr_plot](./Images/cmos_inv_curr_plot.png)<br><br>
+
+Hence, the net power dissipation of our device, __P =__. Also, notice how current only spikes up when the transistion occurs. This region is referred to as __transition region__ and it's width is given by __(VIH - VIL) = 0.24V__. So there is almost __0 watts of power consumed!!!__ when the device is at __VOH__ or __VOL__, that is power only consumed when switching between states.
