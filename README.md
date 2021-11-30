@@ -26,7 +26,7 @@ Let's get right into it.
   - [3.2 CMOS Inverter Analysis(Pre-Layout)](#32-CMOS-Inverter-Analysis-Pre-Layout)
     - [3.2.1 DC Analysis and Important design parameters](#321-DC-Analysis-and-Important-design-parameters)
 
-###### Section 1 has been copies from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
+###### Section 1 has been referenced from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
 
 ## 1. Tools and PDK setup
 
@@ -244,6 +244,7 @@ Now all the basic defining characteristics of an inverter are done. So we can fi
 So for our calculated values, the device would have, __NML = 0.74V__ and __NML = 0.82V__.
 
 Now, they aren't equal. But if we were to take some more effort to get the values of Vth closet to Vdd/2 (0.9V), then we can get NML = NMH. But for our case they are close enough. Then a last parameter that is crucial for any design is the power it consumes. The __Power Dissipation__ of our inverter is given by __P = Vout * Id__, where Id is the drain current. I think I have not added a plot of the drain current yet. So let's do that below and calculate the power consumption of our inverter.<br>
-![cmos_inv_curr_plot](./Images/cmos_inv_curr_plot.png)<br><br>
+![cmos_inv_curr_plot](./Images/cmos_inv_curr_plot.png)<br>
+![cmos_inv_pdiss](./Images/cmos_inv_pdiss.png)<br><br>
 
-Hence, the net power dissipation of our device, __P =__. Also, notice how current only spikes up when the transistion occurs. This region is referred to as __transition region__ and it's width is given by __(VIH - VIL) = 0.24V__. So there is almost __0 watts of power consumed!!!__ when the device is at __VOH__ or __VOL__, that is power only consumed when switching between states.
+Hence, the total __Power Dissipation = 5.55u Watts__ for our device. Also, notice how current only spikes up when the transistion occurs. This region is referred to as __transition region__ and it's width is given by __(VIH - VIL) = 0.24V__. So there is almost __0 watts of power consumed!!!__ when the device is at __VOH__ or __VOL__, that is power only consumed when switching between states.
