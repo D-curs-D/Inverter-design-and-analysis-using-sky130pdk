@@ -25,6 +25,7 @@ Let's get right into it.
   - [3.1 Why CMOS Circuits](#31-Why-CMOS-Circuits) 
   - [3.2 CMOS Inverter Analysis(Pre-Layout)](#32-CMOS-Inverter-Analysis-Pre-Layout)
     - [3.2.1 DC Analysis and Important design parameters](#321-DC-Analysis-and-Important-design-parameters)
+    - [3.2.2 DC Parametric Analysis](322-DC-Parametric-Analysis)
 
 ###### Section 1 has been referenced from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
 
@@ -248,3 +249,10 @@ Now, they aren't equal. But if we were to take some more effort to get the value
 ![cmos_inv_pdiss](./Images/cmos_inv_pdiss.png)<br><br>
 
 Hence, the total __Power Dissipation = 5.55u Watts__ for our device. Also, notice how current only spikes up when the transistion occurs. This region is referred to as __transition region__ and it's width is given by __(VIH - VIL) = 0.24V__. So there is almost __0 watts of power consumed!!!__ when the device is at __VOH__ or __VOL__, that is power only consumed when switching between states.
+
+
+#### 3.2.2 DC Parametric Analysis
+Now, let's analyse the inverter with variations in it's design parameters, like __Width(W)__, __VDD__ and __Cload__. To write a parametric sweep, we have to write a script inside our netlist. Let's proceed.
+
+__(A) Width(W) variations__<br>
+I have added the following script inside the spice netlist for out inv_testbench. 
