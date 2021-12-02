@@ -15,6 +15,21 @@ x1 Vdd Vout Vin GND inv_1
 .save i(c1)
 .options savecurrents
 
+.control
+
+let supply = 1.8
+alter Vdd = supply
+	let VDD_start = 0
+	dowhile VDD_start < 6
+	dc Vin 0 1.8 1m
+	let supply = supply - 0.3
+	alter Vdd = supply
+	let VDD_start = VDD_start + 1
+      end
+plot dc1.vout vs vin dc2.vout vs vin dc3.vout vs vin dc4.vout vs vin dc5.vout vs vin dc6.vout vs vin xlabel "Vin(V)" ylabel "Vout(V)" title "Inverter VTC with vdd variations"
+
+.endc
+
 **** end user architecture code
 **.ends
 
