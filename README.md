@@ -25,7 +25,7 @@ Let's get right into it.
   - [3.1 Why CMOS Circuits](#31-Why-CMOS-Circuits) 
   - [3.2 CMOS Inverter Analysis(Pre-Layout)](#32-CMOS-Inverter-Analysis-Pre-Layout)
     - [3.2.1 DC Analysis and Important design parameters](#321-DC-Analysis-and-Important-design-parameters)
-    - [3.2.2 DC Parametric Analysis](322-DC-Parametric-Analysis)
+    - [3.2.2 DC Parametric Analysis](#322-DC-Parametric-Analysis)
 
 ###### Section 1 has been referenced from [VSDOPEN21_BGR Readme file](https://github.com/D-curs-D/vsdopen2021_bgr/edit/main/README.md) Thanks [Kunal](https://github.com/kunalg123)!
 
