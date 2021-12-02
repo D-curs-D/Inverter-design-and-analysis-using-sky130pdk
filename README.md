@@ -254,5 +254,25 @@ Hence, the total __Power Dissipation = 5.55u Watts__ for our device. Also, notic
 #### 3.2.2 DC Parametric Analysis
 Now, let's analyse the inverter with variations in it's design parameters, like __Width(W)__, __VDD__ and __Cload__. To write a parametric sweep, we have to write a script inside our netlist. Let's proceed.
 
-__(A) Width(W) variations__<br>
-I have added the following script inside the spice netlist for out inv_testbench. 
+__(A) VDD supply variations__<br>
+I have added the following script inside the spice netlist for out inv_testbench.<br>
+```
+.control
+
+let supply = 1.8
+alter Vdd = supply
+	let VDD_start = 0
+	dowhile VDD_start < 6
+	  dc Vin 0 1.8 1m
+	  let supply = supply - 0.3
+	  alter Vdd = supply
+	  let VDD_start = VDD_start + 1
+  end
+plot dc1.vout vs vin dc2.vout vs vin dc3.vout vs vin dc4.vout vs vin dc5.vout vs vin dc6.vout vs vin xlabel "Vin(V)" ylabel "Vout(V)" title "Inverter VTC with vdd variations"
+
+.endc
+```
+<br>
+
+The above ```control``` block would _sweep_ vdd from __1.8V__ and __0.3V__ in steps of __0.3V__, in __ngspice__ and do dc analysis for all of them. The below is the plot for the this [netlist](./xschem%20files/simulations/inv_dc_supply_variations.spice) <br><br>
+![cmos_inv_vdd_variations](./Images/cmos_inv_vdd_variations.png)
