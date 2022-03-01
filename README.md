@@ -93,6 +93,12 @@ A process design kit (PDK) is a set of files used within the semiconductor indus
 The PDK we are going to use for this BGR is Google Skywater-130 (130 nm) PDK.
 ![image](https://user-images.githubusercontent.com/49194847/138075630-d1bdacac-d37b-45d3-88b5-80f118af37cd.png)
 
+_if there exists an error with .include statement in ngspice, change all the permissions of your sky130A files to rwx, that is use_
+```
+chmod -R 777
+```
+_for all the files in sky130A folder_
+
 **Steps to download PDK** - Open the terminal and type the following to download sky130 PDK.
 ```
 $  git clone https://github.com/RTimothyEdwards/open_pdks.git
