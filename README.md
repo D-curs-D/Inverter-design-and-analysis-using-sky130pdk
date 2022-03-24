@@ -48,6 +48,7 @@ For the design and simulation of our Inverter.
 **Steps to install Ngspice** - <br>
 ___Don't use the version that comes with linux distribution, since it is dated and sometimes misses crucial updates___
 
+Follow [this](https://www.youtube.com/watch?v=jXmmxO8WG8s) video for just the ngspice installation.
 _Follow the instructions in ngspice manual chapter 32, under section 32.1.2_
 
 #### 1.1.2 Magic
