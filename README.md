@@ -38,18 +38,24 @@ For the design and simulation of our Inverter.
 - LVS - [Netgen](http://opencircuitdesign.com/netgen/)
 - Schematic Capture - [Xschem](http://repo.hu/projects/xschem/)
 
+#### Make sure all the libraries that are necessary for all these below software are installed in your system. Also this would cost a lot of space as well so I sugguest to get atleast 50GB of storage and atleast 8GB RAM.
+
+I have created a bash script to do that, use [this](./scripts/libs_Installer) file to install all the dependant libraries for the below software.
+I am in the process to create one script to install all the below, but that is for some other day. 
+
 #### 1.1.1 Ngspice 
 ![image](https://user-images.githubusercontent.com/49194847/138070431-d95ce371-db3b-43a1-8dbe-fa85bff53625.png)
 
 [Ngspice](http://ngspice.sourceforge.net/devel.html) is the open source spice simulator for electric and electronic circuits. Ngspice is an open project, there is no closed group of developers.
 
-[Ngspice Reference Manual](http://ngspice.sourceforge.net/docs/ngspice-manual.pdf): Complete reference manual in HTML format.
+[Ngspice Reference Manual](http://ngspice.sourceforge.net/docs/ngspice-manual.pdf): Complete reference manual.
 
 **Steps to install Ngspice** - <br>
 ___Don't use the version that comes with linux distribution, since it is dated and sometimes misses crucial updates___
 
-Follow [this](https://www.youtube.com/watch?v=jXmmxO8WG8s) video for just the ngspice installation.
-_Follow the instructions in ngspice manual chapter 32, under section 32.1.2_
+Follow [this](https://youtu.be/jXmmxO8WG8s?t=1032) video for __just the ngspice installation.__ DO NOT use this video to install xschem and skywater-pdk.<br>
+
+_The above video should be fine but if it does not work for you, Follow the instructions given inside the INSTALL and README file that comes inside the git clone of the repository of ngspice_
 
 #### 1.1.2 Magic
 ![image](https://user-images.githubusercontent.com/49194847/138071384-a2c83ba4-3f9c-431a-98da-72dc2bba38e7.png)
@@ -57,15 +63,8 @@ _Follow the instructions in ngspice manual chapter 32, under section 32.1.2_
  [Magic](http://opencircuitdesign.com/magic/) is a VLSI layout tool.
  
 **Steps to install Magic** - 
- Open the terminal and type the following to install Magic
-```
-$  wget http://opencircuitdesign.com/magic/archive/magic-8.3.32.tgz
-$  tar xvfz magic-8.3.32.tgz
-$  cd magic-8.3.28
-$  ./configure
-$  sudo make
-$  sudo make install
-```
+ Follow the instructions on the [Opencircuitdesign](https://opencircuitdesign.com/magic/) Install section. I would suggest to use a couple options for the configuration file.
+ 
 #### 1.1.3 Netgen
 ![image](https://user-images.githubusercontent.com/49194847/138073573-a819cc67-7643-4ecf-983d-454d99ec5443.png)
 
@@ -85,7 +84,7 @@ $  sudo make install
 [Xschem](http://repo.hu/projects/xschem/xschem_man/xschem_man.html) is a schematic capture program that allows to interactively enter an electronic circuit using a graphical and easy to use interface. When the schematic has been created a circuit netlist can be generated for simulation.
 
 **Steps to install Xschem**
-Follow the instructions given [here](http://repo.hu/projects/xschem/xschem_man/tutorial_install_xschem.html) or follow [this](https://www.youtube.com/watch?v=jXmmxO8WG8s) video tutorial by the creator himself
+Follow the instructions given [here](http://repo.hu/projects/xschem/xschem_man/tutorial_install_xschem.html).
 
 ### 1.2 PDK setup
 
@@ -93,12 +92,6 @@ A process design kit (PDK) is a set of files used within the semiconductor indus
 
 The PDK we are going to use for this BGR is Google Skywater-130 (130 nm) PDK.
 ![image](https://user-images.githubusercontent.com/49194847/138075630-d1bdacac-d37b-45d3-88b5-80f118af37cd.png)
-
-_if there exists an error with .include statement in ngspice, change all the permissions of your sky130A files to rwx, that is use_
-```
-chmod -R 777
-```
-_for all the files in sky130A folder_
 
 **Steps to download PDK** - Open the terminal and type the following to download sky130 PDK.
 ```
@@ -109,8 +102,7 @@ $  make
 $  [sudo] make install
 ```
 
-*or you can also use the instructions given at [open_pdk installation](http://opencircuitdesign.com/open_pdks/index.html), and also for all the other applications used here can be found at [Open Circuit Design](opencircuitdesign.com/) website. The website covers details about a lot of opensource tools, with details about their usage installation etc.*
-
+**You should follow the instructions given at [this](http://opencircuitdesign.com/open_pdks/index.html) link**
 ---
 
 ## 2. Analysis of MOSFET models
