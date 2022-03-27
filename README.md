@@ -38,7 +38,7 @@ For the design and simulation of our Inverter.
 - LVS - [Netgen](http://opencircuitdesign.com/netgen/)
 - Schematic Capture - [Xschem](http://repo.hu/projects/xschem/)
 
-#### Make sure all the libraries that are necessary for all these below software are installed in your system. Also this would cost a lot of space as well so I sugguest to get atleast 50GB of storage and atleast 8GB RAM.
+#### Make sure all the libraries that are necessary for all these below software are installed in your system. Also this would cost a lot of space as well so I suggest to get atleast 50GB of storage and atleast 8GB RAM.
 
 I have created a bash script to do that, use [this](./scripts/libs_Installer) file to install all the dependant libraries for the below software.
 I am in the process to create one script to install all the below, but that is for some other day. 
