@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo -e "This script will install all the libraries necessary to install xschem, ngspice and magic\n"
+echo -e "We will also install the skywater pdk after this as well.\n"
+
+sudo apt-get update -y
+sudo apt-get upgrade
+sudo apt-get autoremove
+sudo apt-get autoclean
+
+sudo apt-get install autoconf automake libtool
+sudo apt-get install git 
+sudo apt-get install adms 
+
+echo -e "\n--------------------------------------------------\n"
+echo -e "\nInstalling libraries for xschem\n"
+
+sudo apt-get install libx11-dev libx11-6 libxrender1 libxrender-dev libxcb1 libx11-xcb-dev tcl8.6 tcl8.6-dev tk8.6 tk8.6-dev flex bison libxpm4 libxpm-dev libx11-6 gawk
+sudo apt-get autoremove
+
+echo -e "\nInstalling libraries for ngspice\n"
+
+sudo apt-get install libxaw7-dev libxaw7 libxmu-dev libxmu-headers libxmu6 libxext6 libxext-doc libxext-dev libxft-dev libxft2 libfontconfig1 libfontconfig1-dev fontconfig fontconfig-config libxrender1 libxrender-dev blt lib64readline-dev lib64readline8 fftw3 fftw3-dev libreadline-dev
+
+echo -e "\nInstalling libraries for magic\n"
+
+sudo apt-get install m4 tcsh csh mesa-common-dev libglu1-mesa-dev libncurses-dev tcl-dev tk-dev 
