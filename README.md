@@ -84,7 +84,7 @@ $  sudo make install
 [Xschem](http://repo.hu/projects/xschem/xschem_man/xschem_man.html) is a schematic capture program that allows to interactively enter an electronic circuit using a graphical and easy to use interface. When the schematic has been created a circuit netlist can be generated for simulation.
 
 **Steps to install Xschem**
-Follow the instructions given [here](http://repo.hu/projects/xschem/xschem_man/tutorial_install_xschem.html).
+Follow the instructions given [here](http://repo.hu/projects/xschem/xschem_man/install_xschem.html).
 
 ### 1.2 PDK setup
 
