@@ -2,7 +2,7 @@
 ### Design and Analysis of CMOS Inverter using the sky130 pdk and various open source tools
 ---
 
-___I got busy and development has halted for a while. I plan to continue and complete this repo and would also welcome any contribution from others as well. Stay tuned for the bash script to install the tools for analog design flow(xschem+sky130pdk+ngspice), that is in priority for now. Also special thanks to [Rajdeep](https://www.linkedin.com/in/rajdeep-mazumder/) for mentioning this repository in his videos, now I have a responsibility to manage it better which I am really excited for!!.___
+___I got busy and development has halted for a while. I plan to continue and complete this repo and would also welcome any contribution from others as well. Stay tuned for the bash script to install the tools for analog design flow(xschem+sky130pdk+ngspice+magic+netgen), that is in priority for now. Also special thanks to [Rajdeep](https://www.linkedin.com/in/rajdeep-mazumder/) for mentioning this repository in his videos, now I have a responsibility to manage it better which I am really excited for!!.___
 
 ---
 This project has only one motive; that is to experiment with working of an inverter and understanding all the parameters involved with it. The design will utilise the models that are present under the __skywater 130nm pdk__ and various open source tools such as, __Xschem__, __NGSPICE__, __MAGIC__, __Netgen__, etc.
